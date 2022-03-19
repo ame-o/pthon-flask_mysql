@@ -32,6 +32,10 @@
                             <td>{{one_user.email}}</td>
                             <td>{{one_user.created_at}}</td>
                             <td>{{one_user.updated_at}}</td>
+                            <td>
+                                <a href="/edit_user/{{one_user.id}}">Edit |</a> 
+                                <a href="/delete_user/{{one_user.id}}">Delete |</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
