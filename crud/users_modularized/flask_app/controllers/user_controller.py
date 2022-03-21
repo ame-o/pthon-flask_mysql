@@ -1,24 +1,22 @@
-import email
-from flask import Flask, render_template, request, redirect
-# importing the user class from the user py
-from users import User
-
-app = Flask(__name__)
+from flask_app import app
+from flask import render_template,redirect,request,session,flash
+#import models later
 
 
-
-@app.route('/')
-def index():
-    return redirect('/users')
+# gets all the burgers and returns them in a list of burger objects .
 #========================================================== 
 # display all users <-- grab from database
 # =========================================================
+@app.route('/')
+def index():
+    return redirect('/users')
+
 @app.route('/users')
 def display_users():
     all_users= User.get_all()
     print(all_users)
     return render_template('index.html', all_users=all_users)
-
+    
 #========================================================== 
 # display one user <-- grab from database
 # =========================================================
@@ -29,6 +27,7 @@ def display_one_user(id):
     }
     one_user = User.get_one_user(query_data)
     return render_template("one_user.html", one_user = one_user)
+
 
 #========================================================== 
 # create new user --> send to database
@@ -42,6 +41,8 @@ def create_user():
     User.save_instance(request.form)
     print(request.form)
     return redirect('/users')
+
+
 
 #========================================================== 
 # edit existing user --> send to database
@@ -75,9 +76,6 @@ def delete(id):
     query_data = {
         "id" :id
     }
-    User.delete_instance(query_data)
+    one_user = User.delete_instance(query_data)
     return redirect('/users')
 
-
-if __name__ == "__main__":
-    app.run(debug = True)
