@@ -3,8 +3,6 @@ from flask_app.config.mysqlconnection import connectToMySQL
 # burgers.py
 from flask_app import app
 
-from burger import Burger
-
 class User:
     def __init__(self,data):
         self.id = data ["id"]

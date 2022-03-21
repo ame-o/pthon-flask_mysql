@@ -1,9 +1,8 @@
 from flask_app import app
-from flask import render_template,redirect,request,session,flash
-#import models later
+from flask import render_template,redirect,request
 
-
-# gets all the burgers and returns them in a list of burger objects .
+#import models
+from flask_app.models.users import User
 #========================================================== 
 # display all users <-- grab from database
 # =========================================================
