@@ -31,7 +31,7 @@ class User:
     def save_instance(cls,data):
         #create new instances of user class linked to database
         query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES (%(first_name)s,%(last_name)s,%(email)s, NOW(), NOW())"
-        mysql = connectToMySQL("users_schema").query_db(query,data)
+        return connectToMySQL("users_schema").query_db(query,data)
     
     @classmethod
     def edit_instance(cls,data):

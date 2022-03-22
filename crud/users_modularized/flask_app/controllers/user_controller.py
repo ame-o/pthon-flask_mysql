@@ -38,9 +38,9 @@ def form_for_user():
 @app.route('/process', methods = ['POST'])
 def create_user():
     User.save_instance(request.form)
-    print(request.form)
-    return redirect('/users')
-
+    one_user = User.get_new_user()
+    no= one_user["id"]
+    return redirect(f"/one_user/{no}")
 
 
 #========================================================== 
@@ -54,17 +54,17 @@ def form_edit_user(id):
     one_user = User.get_one_user(query_data)
     return render_template("edit_user.html", one_user = one_user)
 
-@app.route('/process_edit', methods = ['POST'])
-def process_edit_user():
-    data={
-        "id":request.form["id"],
-        "first_name":request.form["first_name"],
-        "last_name":request.form["last_name"],
-        "email":request.form["email"]
+@app.route('/process_edit/<int:id>', methods = ['POST'])
+def process_edit_user(id):
+    data = {
+        "id": id,
+        "first_name": request.form["first_name"],
+        "last_name": request.form["last_name"],
+        "email": request.form["email"]
     }
     print(data)
     User.edit_instance(data)
-    return redirect ("/users")
+    return redirect (f"/one_user/{id}")
 
 
 #========================================================== 
@@ -77,4 +77,6 @@ def delete(id):
     }
     one_user = User.delete_instance(query_data)
     return redirect('/users')
+
+
 
