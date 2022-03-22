@@ -1,7 +1,8 @@
 #import database connection from MySQL to flask, using class methods
 from flask_app.config.mysqlconnection import connectToMySQL
 
-from flask_app import app
+# from flask_app import app
+from flask_app.models import dojos
 
 class Ninja:
     def __init__(self,data):
@@ -34,6 +35,6 @@ class Ninja:
     @classmethod
     def create_new_ninja(cls,data):
         #create new instances of user class linked to database
-        query = "INSERT INTO ninjas (last_name, first_name, age,dojo_id) VALUES (%(first_name)s,%(last_name)s,%(age)s,%(dojo_id)s)"
+        query = "INSERT INTO ninjas (first_name, last_name, age,dojo_id) VALUES (%(first_name)s,%(last_name)s,%(age)s,%(dojo_id)s)"
         results = connectToMySQL("dojos_and_ninjas_schema").query_db(query,data)
         return results

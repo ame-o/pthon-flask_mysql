@@ -12,12 +12,10 @@
     <section class="section">
         <div class="container">
             <h1 class="title">
-                One Dojo, {{one_dojo.name}} Ninjas
+                {{one_dojo.name}} Ninjas
             </h1>
             <div class="columns">
                 <div class="column">
-                    all ninjas under Dojo table,
-                    link home
                     <table class="table">
                         <thead>
                             <tr>
@@ -27,15 +25,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for ninja in one_dojo_ninjas %}
+                            {% for one_ninja in one_dojo.ninjas %}
                             <tr>
-                                <td>{{ninja.first_name}}</td>
-                                <td>{{ninja.last_name}}</td>
-                                <td>{{ninja.age}}</td>
+                                <td>{{one_ninja.first_name}}</td>
+                                <td>{{one_ninja.last_name}}</td>
+                                <td>{{one_ninja.age}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
+                    <p><a href="/">Home</a></p>
                 </div>
                 <div class="column">
                 blank space

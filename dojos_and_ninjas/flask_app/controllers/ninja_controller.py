@@ -1,10 +1,10 @@
 from flask_app import app
 from flask import render_template, redirect,request,session
 
-# from flask_app.models.dojos import Dojo
 from flask_app.models.dojos import Dojo
 from flask_app.models.ninjas import Ninja
 
+from flask_app.controllers import dojo_controller
 #========================================================== 
 # create Ninja
 # =========================================================
@@ -22,5 +22,7 @@ def create_ninja():
         "age" : int(request.form["age"]),
         "dojo_id" : int(request.form["dojo.id"]),
     }
-    new_ninja= Ninja.create_new_ninja(query_data)
-    return redirect("/")
+    Ninja.create_new_ninja(query_data)
+    Dojo.get_one_dojo_with_ninjas(query_data)
+    print(Dojo.get_one_dojo_with_ninjas(query_data))
+    return redirect(f"/dojos/{query_data['dojo_id']}")
