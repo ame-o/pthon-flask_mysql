@@ -1,6 +1,6 @@
 from flask_app import app
 #controllers
-from flask_app.controllers import # dojo_controller, ninja_controller
+from flask_app.controllers import user_controller
 
 
 
