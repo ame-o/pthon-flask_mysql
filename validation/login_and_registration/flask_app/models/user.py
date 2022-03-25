@@ -22,7 +22,7 @@ class User:
     def validate_register(user): #checking if email is registered
         is_valid = True
         query = "SELECT * FROM users WHERE email =%(email)s;"
-        results = connectToMySQL("login_and_reg").query_db(query,form_data)
+        results = connectToMySQL("login_and_reg").query_db(query,user)
         if len(results) >= 1:
             flash("Email is already taken","register")
             is_valis = False
